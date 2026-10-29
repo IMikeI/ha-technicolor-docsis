@@ -1,0 +1,75 @@
+{
+  "title": "Technicolor DOCSIS",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect Technicolor CGA4233-EU",
+        "description": "Currently only tested with the CGA4233-EU from Salzburg AG in bridge mode.",
+        "data": {"host": "Router address", "username": "Username", "password": "Password"},
+        "data_description": {"host": "For example http://192.168.100.1, without /#/login.", "username": "The router web interface username.", "password": "The router web interface password."}
+      },
+      "reconfigure": {
+        "title": "Change router connection",
+        "description": "Enter the new address and credentials for the same physical router. Enter the password again.",
+        "data": {"host": "Router address", "username": "Username", "password": "Password"}
+      },
+      "reauth_confirm": {
+        "title": "Authenticate router again",
+        "description": "The router rejected authentication. Confirm the address and enter the current credentials.",
+        "data": {"host": "Router address", "username": "Username", "password": "Password"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot read router data. Check reachability, model, firmware and access permissions.",
+      "invalid_auth": "The router rejected authentication. Check the username and password.",
+      "invalid_host": "Enter an HTTP/HTTPS address without a path, query, fragment or embedded credentials."
+    },
+    "abort": {
+      "already_configured": "This router is already configured.",
+      "wrong_device": "This address belongs to a different router. Add it as a new integration instead.",
+      "reauth_successful": "Authentication updated successfully.",
+      "reconfigure_successful": "Router connection updated successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Polling options",
+        "description": "Default: 120 seconds. Smaller intervals increase the load on the router.",
+        "data": {"update_interval": "Update interval (seconds)"}
+      }
+    },
+    "error": {"invalid_interval": "Choose an interval between 60 and 3600 seconds."}
+  },
+  "entity": {
+    "number": {
+      "update_interval": {"name": "Update interval"}
+    },
+    "binary_sensor": {
+      "connection": {"name": "DOCSIS connection"},
+      "channel_lock": {"name": "{channel} lock"}
+    },
+    "sensor": {
+      "power": {"name": "{channel} power"},
+      "snr": {"name": "{channel} SNR"},
+      "frequency": {"name": "{channel} frequency"},
+      "start_frequency": {"name": "{channel} start frequency"},
+      "plc_frequency": {"name": "{channel} PLC frequency"},
+      "central_frequency": {"name": "{channel} center frequency"},
+      "bandwidth": {"name": "{channel} bandwidth"},
+      "symbol_rate": {"name": "{channel} symbol rate"},
+      "modulation": {"name": "{channel} modulation"},
+      "fft": {"name": "{channel} FFT / modulation (router value)"},
+      "profile": {"name": "{channel} profile"},
+      "channel_type": {"name": "{channel} channel type"},
+      "octets": {"name": "{channel} octets"},
+      "corrected": {"name": "{channel} corrected errors"},
+      "uncorrectable": {"name": "{channel} uncorrectable errors"},
+      "cm_status": {"name": "DOCSIS status"},
+      "uptime": {"name": "Uptime"},
+      "cpu_usage": {"name": "CPU usage"},
+      "memory_total": {"name": "Memory total (router units)"},
+      "memory_free": {"name": "Memory free (router units)"}
+    }
+  }
+}

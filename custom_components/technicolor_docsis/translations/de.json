@@ -1,0 +1,75 @@
+{
+  "title": "Technicolor DOCSIS",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Technicolor CGA4233-EU verbinden",
+        "description": "Aktuell nur mit dem CGA4233-EU der Salzburg AG im Bridge-Modus getestet.",
+        "data": {"host": "Router-Adresse", "username": "Benutzername", "password": "Passwort"},
+        "data_description": {"host": "Zum Beispiel http://192.168.100.1, ohne /#/login.", "username": "Benutzername der Router-Weboberflaeche.", "password": "Passwort der Router-Weboberflaeche."}
+      },
+      "reconfigure": {
+        "title": "Router-Verbindung aendern",
+        "description": "Adresse und Zugangsdaten desselben physischen Routers eingeben. Das Passwort erneut eingeben.",
+        "data": {"host": "Router-Adresse", "username": "Benutzername", "password": "Passwort"}
+      },
+      "reauth_confirm": {
+        "title": "Erneut am Router anmelden",
+        "description": "Der Router hat die Anmeldung abgelehnt. Adresse pruefen und aktuelle Zugangsdaten eingeben.",
+        "data": {"host": "Router-Adresse", "username": "Benutzername", "password": "Passwort"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Router-Daten konnten nicht gelesen werden. Erreichbarkeit, Modell, Firmware und Zugriffsrechte pruefen.",
+      "invalid_auth": "Anmeldung abgelehnt. Benutzername und Passwort pruefen.",
+      "invalid_host": "Eine HTTP-/HTTPS-Adresse ohne Pfad, Parameter, Fragment oder eingebettete Zugangsdaten eingeben."
+    },
+    "abort": {
+      "already_configured": "Dieser Router ist bereits eingerichtet.",
+      "wrong_device": "Unter dieser Adresse antwortet ein anderer Router. Diesen bitte als neue Integration hinzufuegen.",
+      "reauth_successful": "Zugangsdaten erfolgreich aktualisiert.",
+      "reconfigure_successful": "Router-Verbindung erfolgreich aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Abfrageeinstellungen",
+        "description": "Standard: 120 Sekunden. Kuerzere Intervalle belasten den Router staerker.",
+        "data": {"update_interval": "Abfrageintervall (Sekunden)"}
+      }
+    },
+    "error": {"invalid_interval": "Ein Intervall zwischen 60 und 3600 Sekunden waehlen."}
+  },
+  "entity": {
+    "number": {
+      "update_interval": {"name": "Abfrageintervall"}
+    },
+    "binary_sensor": {
+      "connection": {"name": "DOCSIS-Verbindung"},
+      "channel_lock": {"name": "{channel} Kanalsynchronisierung"}
+    },
+    "sensor": {
+      "power": {"name": "{channel} Pegel"},
+      "snr": {"name": "{channel} SNR"},
+      "frequency": {"name": "{channel} Frequenz"},
+      "start_frequency": {"name": "{channel} Startfrequenz"},
+      "plc_frequency": {"name": "{channel} PLC-Frequenz"},
+      "central_frequency": {"name": "{channel} Mittenfrequenz"},
+      "bandwidth": {"name": "{channel} Bandbreite"},
+      "symbol_rate": {"name": "{channel} Symbolrate"},
+      "modulation": {"name": "{channel} Modulation"},
+      "fft": {"name": "{channel} FFT / Modulation (Routerwert)"},
+      "profile": {"name": "{channel} Profil"},
+      "channel_type": {"name": "{channel} Kanaltyp"},
+      "octets": {"name": "{channel} Oktette"},
+      "corrected": {"name": "{channel} korrigierte Fehler"},
+      "uncorrectable": {"name": "{channel} nicht korrigierbare Fehler"},
+      "cm_status": {"name": "DOCSIS-Status"},
+      "uptime": {"name": "Betriebszeit"},
+      "cpu_usage": {"name": "CPU-Auslastung"},
+      "memory_total": {"name": "Speicher gesamt (Routereinheiten)"},
+      "memory_free": {"name": "Speicher frei (Routereinheiten)"}
+    }
+  }
+}
